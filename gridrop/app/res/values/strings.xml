@@ -9,7 +9,7 @@
     <string name="clear_all_dialog">Are you sure about clearing all UI elements?</string>
     <string name="add_ui_element">Add UI Element</string>
     <string name="how_it_works">How it works</string>
-    <string name="how_it_works_sub">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</string>
+    <string name="how_it_works_sub">Gridrop is a simple way to display layouts for the Android UI. Start by tapping \'Add UI element\', at the bottom of the screen.</string>
     <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
     <string name="title_select_layout">SELECT LAYOUT</string>
