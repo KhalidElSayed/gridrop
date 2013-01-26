@@ -52,10 +52,10 @@ public class ElementListFactory {
         list.add(new Element(R.string.input_group_message, R.drawable.inputs_group_message));
 
         list.add(new Header(R.string.input_elements_header_single_items));
-        list.add(new Element(R.string.inputs_single_checkbox, R.drawable.inputs_single_checkbox));
+        list.add(new Element(R.string.inputs_single_checkbox, R.drawable.inputs_single_checkbox,R.layout.item_input_checkbox));
         list.add(new Element(R.string.inputs_single_headline, R.drawable.inputs_single_headline));
-        list.add(new Element(R.string.inputs_single_input, R.drawable.inputs_single_input));
-        list.add(new Element(R.string.inputs_single_spinner, R.drawable.inputs_single_spinner));
+        list.add(new Element(R.string.inputs_single_input, R.drawable.inputs_single_input,R.layout.item_input_edittext));
+        list.add(new Element(R.string.inputs_single_spinner, R.drawable.inputs_single_spinner,R.layout.item_input_spinner));
         list.add(new Element(R.string.inputs_single_text, R.drawable.inputs_single_text));
 
         return list;    }

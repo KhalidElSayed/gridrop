@@ -6,8 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import com.novoda.gridrop.ItemSelectionActivity;
 import com.novoda.gridrop.R;
+import com.novoda.gridrop.data.Element;
 import com.novoda.gridrop.data.ElementListFactory;
+import com.novoda.gridrop.data.Header;
 import com.novoda.gridrop.ui.adapters.ElementSetAdapter;
 
 /**
@@ -47,5 +50,24 @@ public class ElementListFragment extends ListFragment {
 
 
     }
+
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        Object object=getListAdapter().getItem(position);
+
+
+        if (object != null && object instanceof Element) {
+            Element element=(Element)object;
+            if(getActivity() instanceof ItemSelectionActivity){
+                ((ItemSelectionActivity)getActivity()).addLayoutId(element.layoutId);
+            }
+
+        } else if (object != null && object instanceof Header) {
+
+            android.util.Log.v("FRAG","you clicked on a header");
+        }
+    }
+
 
 }

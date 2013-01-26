@@ -24,6 +24,7 @@ import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -135,8 +136,9 @@ public class MainActivity extends SherlockFragmentActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
             if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
-                int[] ids = data.getIntArrayExtra(EXTRA_LAYOUT_IDS);
-                inflate(ids);
+                ArrayList<Integer> selectedIds=data.getIntegerArrayListExtra(EXTRA_LAYOUT_IDS);
+                //int[] ids = data.getIntArrayExtra(EXTRA_LAYOUT_IDS);
+                inflate(selectedIds);
             }
         }
     }
@@ -148,32 +150,43 @@ public class MainActivity extends SherlockFragmentActivity {
         startActivity(intent);
     }
 
+    public void inflate(ArrayList<Integer> ids) {
+        final int size= ids.size();
+        int[] res=new int[size];
+        for(int i=0;i<size;i++){
+            res[i]=ids.get(i);
+        }
+        inflate(res);
+    }
+
     public void inflate(int[] ids) {
         if (intro.getVisibility() == View.VISIBLE) {
             intro.setVisibility(View.GONE);
         }
         if (ids != null) {
             for (int id : ids) {
-                View item = inflater.inflate(id, null);
-                item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT));
+                if(id>0){
+                    View item = inflater.inflate(id, null);
+                    item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT));
 
-                // TODO determine which ids to add at the bottom
-                if (id == 0) {
-                    footerContainer.addView(item);
-                } else {
-                    container.addView(item);
+                    // TODO determine which ids to add at the bottom
+                    if (id == 0) {
+                        footerContainer.addView(item);
+                    } else {
+                        container.addView(item);
+                    }
+                    item.startAnimation(getViewAddedAnimation());
+
+                    // Create a generic swipe-to-dismiss touch listener.
+                    item.setOnTouchListener(new SwipeDismissTouchListener(item, null,
+                            new SwipeDismissTouchListener.OnDismissCallback() {
+                                @Override
+                                public void onDismiss(View view, Object token) {
+                                    removeItem(view);
+                                }
+                            }));
                 }
-                item.startAnimation(getViewAddedAnimation());
-
-                // Create a generic swipe-to-dismiss touch listener.
-                item.setOnTouchListener(new SwipeDismissTouchListener(item, null,
-                        new SwipeDismissTouchListener.OnDismissCallback() {
-                            @Override
-                            public void onDismiss(View view, Object token) {
-                                removeItem(view);
-                            }
-                        }));
 
             }
             scrollView.post(new Runnable() {

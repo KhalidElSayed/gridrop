@@ -1,15 +1,14 @@
 package com.novoda.gridrop;
 
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.MenuItem;
 import com.novoda.gridrop.ui.adapters.ItemSelectionPagerAdapter;
+
+import java.util.ArrayList;
 
 public class ItemSelectionActivity extends SherlockFragmentActivity {
 
@@ -17,6 +16,7 @@ public class ItemSelectionActivity extends SherlockFragmentActivity {
     private ItemSelectionPagerAdapter adapter;
 
     private ArrayList<Integer> selectedLayouts = new ArrayList<Integer>();
+    private static final String LOG_TAG = ItemSelectionActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class ItemSelectionActivity extends SherlockFragmentActivity {
     }
 
     public void addLayoutId(Integer resId) {
+        android.util.Log.v(LOG_TAG,"addLayout with id="+resId);
         if (!selectedLayouts.contains(resId)) {
             selectedLayouts.add(resId);
         }
@@ -60,6 +61,7 @@ public class ItemSelectionActivity extends SherlockFragmentActivity {
 
     public void onInsertClicked(View view) {
         Intent returnIntent = new Intent();
+
         returnIntent.putIntegerArrayListExtra(MainActivity.EXTRA_LAYOUT_IDS, selectedLayouts);
         setResult(RESULT_OK, returnIntent);
         finish();
