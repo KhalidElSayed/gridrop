@@ -8,5 +8,9 @@
 	<string name="clear">Clear</string>
 	<string name="how_it_works">How it works</string>
 	<string name="how_it_works_sub">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</string>
-	
+
+    <string name="input_elements_header_patterns">Patterns</string>
+    <string name="input_elements_header_single_items">Single Items</string>
+
+
 </resources>
