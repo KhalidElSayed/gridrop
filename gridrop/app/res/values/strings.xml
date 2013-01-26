@@ -29,5 +29,19 @@
     <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
     <string name="input_element_textview">TextView</string>
+<string name="input_elements_header_patterns">Patterns</string>
+    <string name="input_elements_header_single_items">Single Items</string>
+
+    <string name="input_element_textview">TextView</string>
+
+    <string name="input_group_address">Address</string>
+    <string name="input_group_choice">Choice</string>
+    <string name="input_group_message">Message</string>
+    <string name="inputs_single_checkbox">Checkbox</string>
+    <string name="inputs_single_headline">Headline</string>
+    <string name="inputs_single_spinner">Spinner</string>
+    <string name="inputs_single_input">Input</string>
+    <string name="inputs_single_text">Text</string>
+
 
 </resources>

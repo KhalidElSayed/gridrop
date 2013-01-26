@@ -1,8 +1,5 @@
 package com.novoda.gridrop;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -19,12 +16,14 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
 import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -46,7 +45,7 @@ public class MainActivity extends SherlockFragmentActivity {
         footerContainer = (LinearLayout) findViewById(R.id.container_footer);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
         intro = (View) findViewById(R.id.intro);
-        addUiElementButton = (Button) findViewById(R.id.btn_add);
+      //  addUiElementButton = (Button) findViewById(R.id.btn_add);
         inflater = LayoutInflater.from(this);
         
         inflate(new int[] { R.layout.item_bar_section, R.layout.item_input_spinner, R.layout.item_input_edittext, R.layout.item_input_checkbox, R.layout.item_input_toogle });
