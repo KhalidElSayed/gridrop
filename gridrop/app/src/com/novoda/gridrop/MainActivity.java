@@ -45,10 +45,10 @@ public class MainActivity extends SherlockFragmentActivity {
         footerContainer = (LinearLayout) findViewById(R.id.container_footer);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
         intro = (View) findViewById(R.id.intro);
-      //  addUiElementButton = (Button) findViewById(R.id.btn_add);
+        addUiElementButton = (Button) findViewById(R.id.btn_add);
         inflater = LayoutInflater.from(this);
         
-        inflate(new int[] { R.layout.item_bar_section, R.layout.item_input_spinner, R.layout.item_input_edittext, R.layout.item_input_checkbox, R.layout.item_input_toogle });
+        inflate(new int[] { R.layout.item_bar_section, R.layout.item_input_spinner, R.layout.item_input_edittext, R.layout.item_input_checkbox, R.layout.item_input_toogle, R.layout.group_address_field, R.layout.group_input_message });
     }
 
     @Override
