@@ -10,6 +10,13 @@ public class Element {
         this.image = image;
     }
 
+    public Element(int name, int image, int layoutId) {
+        this.name = name;
+        this.image = image;
+        this.layoutId = layoutId;
+    }
+
     public int name;
     public int image;
+    public int layoutId;
 }
