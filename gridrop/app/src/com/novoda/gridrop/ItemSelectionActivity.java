@@ -29,6 +29,7 @@ public class ItemSelectionActivity extends SherlockFragmentActivity {
 
         adapter = new ItemSelectionPagerAdapter(getSupportFragmentManager());
         pager.setAdapter(adapter);
+        pager.setCurrentItem(1);
     }
 
     @Override

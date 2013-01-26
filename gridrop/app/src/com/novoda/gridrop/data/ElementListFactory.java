@@ -47,9 +47,9 @@ public class ElementListFactory {
         ArrayList<Object> list = new ArrayList<Object>();
 
         list.add(new Header(R.string.input_elements_header_patterns));
-        list.add(new Element(R.string.input_group_address, R.drawable.inputs_group_address));
+        list.add(new Element(R.string.input_group_address, R.drawable.inputs_group_address,R.layout.group_address_field));
         list.add(new Element(R.string.input_group_choice, R.drawable.inputs_group_choice));
-        list.add(new Element(R.string.input_group_message, R.drawable.inputs_group_message));
+        list.add(new Element(R.string.input_group_message, R.drawable.inputs_group_message,R.layout.group_input_message));
 
         list.add(new Header(R.string.input_elements_header_single_items));
         list.add(new Element(R.string.inputs_single_checkbox, R.drawable.inputs_single_checkbox,R.layout.item_input_checkbox));
