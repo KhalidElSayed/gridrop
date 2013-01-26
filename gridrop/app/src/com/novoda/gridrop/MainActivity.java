@@ -67,6 +67,10 @@ public class MainActivity extends SherlockFragmentActivity {
         } else if (id == R.id.menu_share) {
             share();
             return true;
+        } else if (id == R.id.menu_about) {
+            Intent i = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(i);
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }

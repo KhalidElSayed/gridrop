@@ -14,6 +14,13 @@
         <item name="android:titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title.Inverse</item>
         <item name="titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title.Inverse</item>
     </style>
+    
+    <style name="Widget.Gridrop.ActionBar.About" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:displayOptions">showTitle</item>
+        <item name="displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+        <item name="titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+    </style>
 
     <style name="Theme.Gridrop.TextAppearance.ActionBar.Title" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Title">
         <item name="android:textSize">14sp</item>

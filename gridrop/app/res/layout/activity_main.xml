@@ -49,14 +49,13 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingLeft="16dip"
+			android:paddingLeft="16dip"
             android:paddingRight="16dip"
             android:orientation="vertical" >
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dip"
@@ -74,7 +73,7 @@
         android:id="@+id/container_footer" 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="16dip"
+		android:paddingLeft="16dip"
         android:paddingRight="16dip">
         
     </LinearLayout>

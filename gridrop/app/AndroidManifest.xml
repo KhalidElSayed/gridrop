@@ -26,6 +26,10 @@
             android:name=".ItemSelectionActivity"
             android:label="@string/title_select_layout"
             android:theme="@style/Theme.Gridrop.DarkActionBar" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_about"
+            android:theme="@style/Theme.Gridrop.About" />
     </application>
 
 </manifest>

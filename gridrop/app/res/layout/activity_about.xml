@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dip"
+    tools:context=".AboutActivity" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:text="@string/about_what_is_gridrop_title"
+        android:textAllCaps="true"
+        android:textColor="#AAA"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="2dip"
+        android:background="#AAA" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="4dip"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/about_what_is_gridrop" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:text="@string/about_the_team_title"
+        android:textAllCaps="true"
+        android:textColor="#AAA"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="2dip"
+        android:background="#AAA" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dip"
+        android:layout_marginLeft="4dip"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/about_the_team" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:text="@string/about_join_the_community_title"
+        android:textAllCaps="true"
+        android:textColor="#AAA"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:layout_marginBottom="8dip"
+        android:layout_marginTop="2dip"
+        android:background="#AAA" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dip"
+        android:lineSpacingMultiplier="1.2"
+        android:text="@string/about_join_the_community" />
+
+</LinearLayout>
