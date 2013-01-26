@@ -30,4 +30,13 @@
 
     <string name="input_element_textview">TextView</string>
 
+    <string name="input_group_address">Address</string>
+    <string name="input_group_choice">Choice</string>
+    <string name="input_group_message">Message</string>
+    <string name="inputs_single_checkbox">Checkbox</string>
+    <string name="inputs_single_headline">Checkbox</string>
+    <string name="inputs_single_spinner">Checkbox</string>
+    <string name="inputs_single_input">Checkbox</string>
+    <string name="inputs_single_text">Checkbox</string>
+
 </resources>
