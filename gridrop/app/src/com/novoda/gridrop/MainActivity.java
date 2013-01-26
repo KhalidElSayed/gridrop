@@ -26,11 +26,12 @@ import com.example.android.swipedismiss.SwipeDismissTouchListener;
 import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
 
 public class MainActivity extends SherlockFragmentActivity {
-	
-	private static final int REQUEST_CODE_ADD = 0;
-	public static final String EXTRA_LAYOUT_IDS = "layoutIds";
+
+    private static final int REQUEST_CODE_ADD = 0;
+    public static final String EXTRA_LAYOUT_IDS = "layoutIds";
 
     private LinearLayout container;
+    private LinearLayout footerContainer;
     private LayoutInflater inflater;
     private ScrollView scrollView;
     private View intro;
@@ -40,6 +41,7 @@ public class MainActivity extends SherlockFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = (LinearLayout) findViewById(R.id.container);
+        footerContainer = (LinearLayout) findViewById(R.id.container_footer);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
         intro = (View) findViewById(R.id.intro);
         inflater = LayoutInflater.from(this);
@@ -88,10 +90,10 @@ public class MainActivity extends SherlockFragmentActivity {
         container.startAnimation(fadeOut);
 
     }
-    
+
     public void removeItem(View view) {
         container.removeView(view);
-        if(container.getChildCount() == 0) {
+        if (container.getChildCount() == 0) {
             intro.setVisibility(View.VISIBLE);
         }
     }
@@ -110,15 +112,15 @@ public class MainActivity extends SherlockFragmentActivity {
         }.execute(this);
     }
 
-    public void launch(View view) {
-        share();
-
-    }
-
-    public void inflate(View view) {
-    	Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
-    	startActivityForResult(i, REQUEST_CODE_ADD);
-//        inflate(new int[] { R.layout.seekbar });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
+            if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
+                int[] ids = data.getIntArrayExtra(EXTRA_LAYOUT_IDS);
+                inflate(ids);
+            }
+        }
     }
 
     private void launchGallery(Uri uri) {
@@ -137,7 +139,13 @@ public class MainActivity extends SherlockFragmentActivity {
                 View item = inflater.inflate(id, null);
                 item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                container.addView(item);
+                
+                // TODO determine which ids to add at the bottom
+                if(id == 0) {
+                    footerContainer.addView(item);
+                } else {
+                    container.addView(item);
+                }
                 item.startAnimation(getViewAddedAnimation());
 
                 // Create a generic swipe-to-dismiss touch listener.
