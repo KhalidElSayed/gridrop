@@ -1,5 +1,9 @@
 package com.novoda.gridrop.data;
 
+import com.novoda.gridrop.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +31,71 @@ public class ElementListFactory {
     }
 
     private static Map<Integer, List<Integer>>createBarTypes() {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        HashMap<Integer,List<Integer>> listWithHeaders=new HashMap<Integer, List<Integer>>();
+
+        List<Integer> patterns=new ArrayList<Integer>();
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        listWithHeaders.put(R.string.input_elements_header_patterns,patterns);
+
+        List<Integer> singleItems=new ArrayList<Integer>();
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        
+        listWithHeaders.put(R.string.input_elements_header_single_items,singleItems);
+
+
+        return listWithHeaders;
     }
 
     private static Map<Integer, List<Integer>> createInputTypes() {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        HashMap<Integer, List<Integer>> listWithHeaders = new HashMap<Integer, List<Integer>>();
+
+        List<Integer> patterns = new ArrayList<Integer>();
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        listWithHeaders.put(R.string.input_elements_header_patterns, patterns);
+
+        List<Integer> singleItems = new ArrayList<Integer>();
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+
+        listWithHeaders.put(R.string.input_elements_header_single_items, singleItems);
+
+
+        return listWithHeaders;
     }
 
     private static Map<Integer, List<Integer>> createListTypes() {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        HashMap<Integer, List<Integer>> listWithHeaders = new HashMap<Integer, List<Integer>>();
+
+        List<Integer> patterns = new ArrayList<Integer>();
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        patterns.add(R.layout.dummy_list_element);
+        listWithHeaders.put(R.string.input_elements_header_patterns, patterns);
+
+        List<Integer> singleItems = new ArrayList<Integer>();
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+        singleItems.add(R.layout.dummy_list_element);
+
+        listWithHeaders.put(R.string.input_elements_header_single_items, singleItems);
+
+
+        return listWithHeaders;
     }
 }
