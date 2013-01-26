@@ -19,16 +19,19 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
+import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
 
-public class MainActivity extends SherlockActivity {
-	
-	private static final int REQUEST_CODE_ADD = 0;
+public class MainActivity extends SherlockFragmentActivity {
+
+    private static final int REQUEST_CODE_ADD = 0;
+    public static final String EXTRA_LAYOUT_IDS = "layoutIds";
 
     private LinearLayout container;
+    private LinearLayout footerContainer;
     private LayoutInflater inflater;
     private ScrollView scrollView;
     private View intro;
@@ -38,6 +41,7 @@ public class MainActivity extends SherlockActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         container = (LinearLayout) findViewById(R.id.container);
+        footerContainer = (LinearLayout) findViewById(R.id.container_footer);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
         intro = (View) findViewById(R.id.intro);
         inflater = LayoutInflater.from(this);
@@ -53,14 +57,23 @@ public class MainActivity extends SherlockActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_clear) {
-            clear();
+            ClearDialogFragment.newInstance().show(getSupportFragmentManager(), null);
             return true;
         } else if (id == R.id.menu_share) {
             share();
             return true;
+        } else if (id == R.id.menu_about) {
+            Intent i = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(i);
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+    
+    public void inflate(View view) {
+        Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
+        startActivityForResult(i, REQUEST_CODE_ADD);
     }
 
     public void clear() {
@@ -86,10 +99,10 @@ public class MainActivity extends SherlockActivity {
         container.startAnimation(fadeOut);
 
     }
-    
+
     public void removeItem(View view) {
         container.removeView(view);
-        if(container.getChildCount() == 0) {
+        if (container.getChildCount() == 0) {
             intro.setVisibility(View.VISIBLE);
         }
     }
@@ -108,15 +121,15 @@ public class MainActivity extends SherlockActivity {
         }.execute(this);
     }
 
-    public void launch(View view) {
-        share();
-
-    }
-
-    public void inflate(View view) {
-    	Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
-    	startActivityForResult(i, REQUEST_CODE_ADD);
-//        inflate(new int[] { R.layout.seekbar });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
+            if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
+                int[] ids = data.getIntArrayExtra(EXTRA_LAYOUT_IDS);
+                inflate(ids);
+            }
+        }
     }
 
     private void launchGallery(Uri uri) {
@@ -135,7 +148,13 @@ public class MainActivity extends SherlockActivity {
                 View item = inflater.inflate(id, null);
                 item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                container.addView(item);
+                
+                // TODO determine which ids to add at the bottom
+                if(id == 0) {
+                    footerContainer.addView(item);
+                } else {
+                    container.addView(item);
+                }
                 item.startAnimation(getViewAddedAnimation());
 
                 // Create a generic swipe-to-dismiss touch listener.

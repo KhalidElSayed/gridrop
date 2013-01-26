@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.Gridrop.ActionBar" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:displayOptions">showHome|showTitle</item>
+        <item name="displayOptions">showHome|showTitle</item>
+        <item name="android:titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+        <item name="titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+    </style>
+
+    <style name="Widget.Gridrop.ActionBar.Dark" parent="Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+        <item name="android:displayOptions">showTitle</item>
+        <item name="displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title.Inverse</item>
+        <item name="titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title.Inverse</item>
+    </style>
+    
+    <style name="Widget.Gridrop.ActionBar.About" parent="Widget.Sherlock.Light.ActionBar.Solid">
+        <item name="android:displayOptions">showTitle</item>
+        <item name="displayOptions">showTitle</item>
+        <item name="android:titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+        <item name="titleTextStyle">@style/Theme.Gridrop.TextAppearance.ActionBar.Title</item>
+    </style>
+
+    <style name="Theme.Gridrop.TextAppearance.ActionBar.Title" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="Theme.Gridrop.TextAppearance.ActionBar.Title.Inverse" parent="@style/TextAppearance.Sherlock.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+</resources>

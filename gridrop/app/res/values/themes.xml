@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme.Gridrop" parent="Theme.Sherlock.Light">
+        <item name="android:actionBarStyle">@style/Widget.Gridrop.ActionBar</item>
+        <item name="actionBarStyle">@style/Widget.Gridrop.ActionBar</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_item_light</item>
+        <item name="actionBarItemBackground">@drawable/selectable_item_light</item>
+    </style>
+
+    <style name="Theme.Gridrop.DarkActionBar" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/Widget.Gridrop.ActionBar.Dark</item>
+        <item name="actionBarStyle">@style/Widget.Gridrop.ActionBar.Dark</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_item_light</item>
+        <item name="actionBarItemBackground">@drawable/selectable_item_light</item>
+    </style>
+
+    <style name="Theme.Gridrop.About" parent="Theme.Sherlock.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/Widget.Gridrop.ActionBar.About</item>
+        <item name="actionBarStyle">@style/Widget.Gridrop.ActionBar.About</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_item_light</item>
+        <item name="actionBarItemBackground">@drawable/selectable_item_light</item>
+    </style>
+    
+</resources>
