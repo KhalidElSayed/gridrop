@@ -3,36 +3,31 @@
 
     <string name="app_name">Gridrop</string>
     <string name="menu_about">About</string>
-	<string name="share">Share</string>
-	<string name="clear">Clear</string>
-	<string name="clear_all">Clear All</string>
-	<string name="clear_all_dialog">Are you sure about clearing all UI elements?</string>
-	<string name="add_ui_element">Add UI Element</string>
-	<string name="how_it_works">How it works</string>
-	<string name="how_it_works_sub">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</string>
-
+    <string name="share">Share</string>
+    <string name="clear">Clear</string>
+    <string name="clear_all">Clear All</string>
+    <string name="clear_all_dialog">Are you sure about clearing all UI elements?</string>
+    <string name="add_ui_element">Add UI Element</string>
+    <string name="how_it_works">How it works</string>
+    <string name="how_it_works_sub">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</string>
     <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
-    
     <string name="title_select_layout">SELECT LAYOUT</string>
-    
+
     <string-array name="spinner_items">
         <item>Just a spinner</item>
         <item>with two items.</item>
     </string-array>
+
     <string name="title_about">ABOUT</string>
-    
     <string name="about_what_is_gridrop_title">WHAT IS GRIDROP</string>
     <string name="about_what_is_gridrop">Gridrop was made with love in London at Google Campus and handcrafted by four guys and onw girl.</string>
-	<string name="about_the_team_title">THE TEAM</string>
+    <string name="about_the_team_title">THE TEAM</string>
     <string name="about_the_team">Andreas Stütz\nMarkus Hintersteiner\nPhil Oakley\nRonan Schwarz\nMarie Schweiz</string>
     <string name="about_join_the_community_title">JOIN THE COMMUNITY</string>
     <string name="about_join_the_community">Join the professional Android Designers community on Google+!</string>
-
-
     <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
-
     <string name="input_element_textview">TextView</string>
 <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
