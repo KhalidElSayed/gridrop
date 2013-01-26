@@ -15,6 +15,11 @@
     <string name="input_elements_header_single_items">Single Items</string>
     
     <string name="title_select_layout">SELECT LAYOUT</string>
+    
+    <string-array name="spinner_items">
+        <item>Just a spinner</item>
+        <item>with two items.</item>
+    </string-array>
 
 
 </resources>
