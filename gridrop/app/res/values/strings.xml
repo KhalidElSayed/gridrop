@@ -29,4 +29,10 @@
     <string name="about_join_the_community_title">JOIN THE COMMUNITY</string>
     <string name="about_join_the_community">Join the professional Android Designers community on Google+!</string>
 
+
+    <string name="input_elements_header_patterns">Patterns</string>
+    <string name="input_elements_header_single_items">Single Items</string>
+
+    <string name="input_element_textview">TextView</string>
+
 </resources>
