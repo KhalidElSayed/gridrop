@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" android:exitFadeDuration="@android:integer/config_shortAnimTime">
+
+    <!-- this looks a little bit weird because we can't just use android:drawable="@color/selectable_item_light" here for each state -->
+    <!-- there's a bug on android pre-HC, which applies the selector-color to each list item if the drawable is used as listSelector for a ListView -->
+    <!-- using shape drawables fixes this :> -->
+    
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/selectable_item_light" />
+        </shape>
+    </item>
+    <item android:state_checked="true">
+        <shape>
+            <solid android:color="@color/selectable_item_light" />
+        </shape>
+    </item>
+    <item android:state_focused="true">
+    	<shape>
+            <solid android:color="@color/selectable_item_light" />
+    	</shape>
+    </item>
+    <item android:drawable="@color/transparent"/>
+
+</selector>
