@@ -28,7 +28,7 @@
             android:theme="@style/Theme.Gridrop.DarkActionBar" />
         <activity
             android:name=".AboutActivity"
-            android:label="@string/title_select_about"
+            android:label="@string/title_about"
             android:theme="@style/Theme.Gridrop.About" />
     </application>
 
