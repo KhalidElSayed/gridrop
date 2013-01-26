@@ -1,8 +1,5 @@
 package com.novoda.gridrop;
 
-import java.io.File;
-import java.io.FileOutputStream;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,14 +13,17 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
 import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -33,6 +33,7 @@ public class MainActivity extends SherlockFragmentActivity {
     private LinearLayout container;
     private LinearLayout footerContainer;
     private LayoutInflater inflater;
+    private Button addUiElementButton;
     private ScrollView scrollView;
     private View intro;
 
@@ -44,7 +45,10 @@ public class MainActivity extends SherlockFragmentActivity {
         footerContainer = (LinearLayout) findViewById(R.id.container_footer);
         scrollView = (ScrollView) findViewById(R.id.scrollview);
         intro = (View) findViewById(R.id.intro);
+      //  addUiElementButton = (Button) findViewById(R.id.btn_add);
         inflater = LayoutInflater.from(this);
+        
+        inflate(new int[] { R.layout.item_bar_section, R.layout.item_input_spinner, R.layout.item_input_edittext, R.layout.item_input_checkbox, R.layout.item_input_toogle });
     }
 
     @Override
@@ -70,7 +74,7 @@ public class MainActivity extends SherlockFragmentActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-    
+
     public void inflate(View view) {
         Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
         startActivityForResult(i, REQUEST_CODE_ADD);
@@ -109,7 +113,12 @@ public class MainActivity extends SherlockFragmentActivity {
 
     public void share() {
         new ScreenshotTask() {
+            protected void onPreExecute() {
+                addUiElementButton.setVisibility(View.GONE);
+            };
+
             protected void onPostExecute(File result) {
+                addUiElementButton.setVisibility(View.VISIBLE);
                 try {
                     if (result != null) {
                         launchGallery(Uri.fromFile(result));
@@ -148,9 +157,9 @@ public class MainActivity extends SherlockFragmentActivity {
                 View item = inflater.inflate(id, null);
                 item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT));
-                
+
                 // TODO determine which ids to add at the bottom
-                if(id == 0) {
+                if (id == 0) {
                     footerContainer.addView(item);
                 } else {
                     container.addView(item);

@@ -15,6 +15,11 @@
     <string name="input_elements_header_single_items">Single Items</string>
     
     <string name="title_select_layout">SELECT LAYOUT</string>
+    
+    <string-array name="spinner_items">
+        <item>Just a spinner</item>
+        <item>with two items.</item>
+    </string-array>
     <string name="title_about">ABOUT</string>
     
     <string name="about_what_is_gridrop_title">WHAT IS GRIDROP</string>
@@ -29,6 +34,10 @@
     <string name="input_elements_header_single_items">Single Items</string>
 
     <string name="input_element_textview">TextView</string>
+<string name="input_elements_header_patterns">Patterns</string>
+    <string name="input_elements_header_single_items">Single Items</string>
+
+    <string name="input_element_textview">TextView</string>
 
     <string name="input_group_address">Address</string>
     <string name="input_group_choice">Choice</string>
@@ -38,5 +47,6 @@
     <string name="inputs_single_spinner">Checkbox</string>
     <string name="inputs_single_input">Checkbox</string>
     <string name="inputs_single_text">Checkbox</string>
+
 
 </resources>
