@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">GridropTest</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Gridrop</string>
     <string name="menu_settings">Settings</string>
 	<string name="share">Share</string>
 	<string name="clear">Clear</string>
+	<string name="clear_all">Clear All</string>
+	<string name="clear_all_dialog">Are you sure about clearing all UI elements?</string>
+	<string name="add_ui_element">Add UI Element</string>
 	<string name="how_it_works">How it works</string>
 	<string name="how_it_works_sub">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</string>
 	

@@ -19,14 +19,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
+import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
 
-public class MainActivity extends SherlockActivity {
+public class MainActivity extends SherlockFragmentActivity {
 	
 	private static final int REQUEST_CODE_ADD = 0;
+	public static final String EXTRA_LAYOUT_IDS = "layoutIds";
 
     private LinearLayout container;
     private LayoutInflater inflater;
@@ -53,7 +55,7 @@ public class MainActivity extends SherlockActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_clear) {
-            clear();
+            ClearDialogFragment.newInstance().show(getSupportFragmentManager(), null);
             return true;
         } else if (id == R.id.menu_share) {
             share();
