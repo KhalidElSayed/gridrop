@@ -9,7 +9,8 @@
 
     <TextView
         android:layout_width="0dip"
-        android:layout_height="wrap_content"
+        android:layout_height="48dip"
+        android:gravity="center_vertical"
         android:layout_weight="1"
         android:text="Single toogle button" />
 
