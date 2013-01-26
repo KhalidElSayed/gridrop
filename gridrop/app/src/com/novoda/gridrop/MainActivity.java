@@ -66,6 +66,11 @@ public class MainActivity extends SherlockFragmentActivity {
             return super.onOptionsItemSelected(item);
         }
     }
+    
+    public void inflate(View view) {
+        Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
+        startActivityForResult(i, REQUEST_CODE_ADD);
+    }
 
     public void clear() {
         Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
