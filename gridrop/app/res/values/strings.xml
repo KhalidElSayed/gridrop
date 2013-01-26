@@ -12,5 +12,7 @@
     <string name="input_elements_header_patterns">Patterns</string>
     <string name="input_elements_header_single_items">Single Items</string>
 
+    <string name="input_element_textview">TextView</string>
+
 
 </resources>
