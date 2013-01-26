@@ -14,10 +14,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
-            android:background="#FFF"
+            android:background="#FF282828"
             android:paddingBottom="4dip"
             android:paddingTop="4dip"
-            android:textColor="#000"
+            android:textColor="#FFF"
             android:textSize="14sp" />
     </android.support.v4.view.ViewPager>
 
@@ -35,7 +35,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selectable_item_light"
-            android:clickable="true" >
+            android:clickable="true"
+            android:onClick="onCancelClicked" >
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +63,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selectable_item_light"
-            android:clickable="true" >
+            android:clickable="true"
+            android:onClick="onInsertClicked" >
 
             <TextView
                 android:layout_width="wrap_content"
