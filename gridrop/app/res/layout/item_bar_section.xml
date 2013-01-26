@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dip"
+            android:layout_marginLeft="8dip"
             android:text="Section"
             android:textColor="#AAAAAA"
             android:textAllCaps="true"
