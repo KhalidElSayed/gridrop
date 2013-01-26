@@ -25,6 +25,8 @@ import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
 
 public class MainActivity extends SherlockActivity {
+	
+	private static final int REQUEST_CODE_ADD = 0;
 
     private LinearLayout container;
     private LayoutInflater inflater;
@@ -112,7 +114,9 @@ public class MainActivity extends SherlockActivity {
     }
 
     public void inflate(View view) {
-        inflate(new int[] { R.layout.seekbar });
+    	Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
+    	startActivityForResult(i, REQUEST_CODE_ADD);
+//        inflate(new int[] { R.layout.seekbar });
     }
 
     private void launchGallery(Uri uri) {
