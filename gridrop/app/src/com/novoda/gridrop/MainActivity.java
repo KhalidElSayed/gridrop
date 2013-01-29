@@ -1,5 +1,9 @@
 package com.novoda.gridrop;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,15 +20,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.example.android.swipedismiss.SwipeDismissTouchListener;
 import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
 
 public class MainActivity extends SherlockFragmentActivity {
 
@@ -48,8 +49,6 @@ public class MainActivity extends SherlockFragmentActivity {
         intro = (View) findViewById(R.id.intro);
         addUiElementButton = (Button) findViewById(R.id.btn_add);
         inflater = LayoutInflater.from(this);
-        
-        //inflate(new int[] { R.layout.item_bar_section, R.layout.item_input_spinner, R.layout.item_input_edittext, R.layout.item_input_checkbox, R.layout.item_input_toogle, R.layout.group_address_field, R.layout.group_input_message });
     }
 
     @Override
@@ -134,10 +133,10 @@ public class MainActivity extends SherlockFragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
             if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
-                ArrayList<Integer> selectedIds=data.getIntegerArrayListExtra(EXTRA_LAYOUT_IDS);
-                //int[] ids = data.getIntArrayExtra(EXTRA_LAYOUT_IDS);
+                ArrayList<Integer> selectedIds = data.getIntegerArrayListExtra(EXTRA_LAYOUT_IDS);
                 inflate(selectedIds);
             }
         }
@@ -151,31 +150,30 @@ public class MainActivity extends SherlockFragmentActivity {
     }
 
     public void inflate(ArrayList<Integer> ids) {
-        final int size= ids.size();
-        int[] res=new int[size];
-        for(int i=0;i<size;i++){
-            res[i]=ids.get(i);
-        }
-        inflate(res);
+        inflate(ids.toArray(new Integer[ids.size()]));
     }
 
-    public void inflate(int[] ids) {
-        if (intro.getVisibility() == View.VISIBLE) {
+    public void inflate(Integer[] ids) {
+        if (ids.length > 0 && intro.getVisibility() == View.VISIBLE) {
             intro.setVisibility(View.GONE);
         }
         if (ids != null) {
             for (int id : ids) {
-                if(id>0){
+                if (id > 0) {
                     View item = inflater.inflate(id, null);
+
+                    item.setFocusable(false);
+
                     item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT));
 
-                    // TODO determine which ids to add at the bottom
+                    // TODO determine which ids to add at the bottom (for split ActionBar)
                     if (id == 0) {
                         footerContainer.addView(item);
                     } else {
                         container.addView(item);
                     }
+                    
                     item.startAnimation(getViewAddedAnimation());
 
                     // Create a generic swipe-to-dismiss touch listener.
@@ -200,8 +198,7 @@ public class MainActivity extends SherlockFragmentActivity {
     }
 
     private Animation getViewAddedAnimation() {
-        Animation a = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-        return a;
+        return AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
     }
 
     class ScreenshotTask extends AsyncTask<Activity, Void, File> {
@@ -230,4 +227,5 @@ public class MainActivity extends SherlockFragmentActivity {
             return null;
         }
     }
+
 }

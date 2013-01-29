@@ -1,38 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:clickable="true"
-    android:focusable="true" >
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="4dip"
-        android:paddingLeft="8dip"
-        android:text="MESSAGE FIELD"
-        android:textColor="#AAA"
-        android:textSize="14sp"
-        android:textStyle="bold" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dip"
-        android:layout_marginLeft="4dip"
-        android:layout_marginRight="4dip"
-        android:layout_marginTop="2dip"
-        android:background="#AAA" />
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="48dip"
-        android:hint="your e-mail address" />
+        android:hint="To" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:editable="false"
-        android:text="Aenean aliquet nibh vel nisi porta non fermentum erat hendrerit. Sed ac justo sit amet turpis consequat molestie. Aliquam rhoncus vehicula tortor, sed" />
+        android:layout_height="48dip"
+        android:hint="Subject" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="48dip"
+        android:hint="Compose email" />
 
 </LinearLayout>

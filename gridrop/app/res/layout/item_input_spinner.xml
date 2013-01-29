@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<Spinner xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true" >
-
-    <Spinner
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="48dip"
-        android:clickable="false"
-        android:layout_gravity="bottom"
-        android:background="@drawable/spinner_background_holo_light"
-        android:entries="@array/spinner_items" >
-    </Spinner>
-
-</LinearLayout>
+    android:layout_height="48dip"
+    android:background="@drawable/spinner_background_holo_light"
+    android:entries="@array/spinner_items" />

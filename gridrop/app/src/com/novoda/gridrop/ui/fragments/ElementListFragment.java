@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+
 import com.novoda.gridrop.ItemSelectionActivity;
 import com.novoda.gridrop.R;
 import com.novoda.gridrop.data.Element;
@@ -14,21 +15,20 @@ import com.novoda.gridrop.data.Header;
 import com.novoda.gridrop.ui.adapters.ElementSetAdapter;
 
 /**
- * Author: zero
- * Date: 1/26/13
+ * Author: zero Date: 1/26/13
  */
 public class ElementListFragment extends ListFragment {
 
     public static final String ARG_ELEMENT_TYPE = "ARG_ELEMENT_TYPE";
     private ListView listView;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        android.util.Log.v("FRAG","ONCREATEVIEW");
-        View view=inflater.inflate(R.layout.element_list_frag,null);
+        android.util.Log.v("FRAG", "ONCREATEVIEW");
+        View view = inflater.inflate(R.layout.element_list_frag, null);
 
-        listView= (ListView) view.findViewById(android.R.id.list);
+        listView = (ListView) view.findViewById(android.R.id.list);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
         return view;
     }
@@ -37,37 +37,34 @@ public class ElementListFragment extends ListFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         int elementType = ElementListFactory.ELEMENT_TYPE_INPUT;
-        if(getArguments()!=null ){
-            elementType=getArguments().getInt(ARG_ELEMENT_TYPE,ElementListFactory.ELEMENT_TYPE_INPUT);
 
+        if (getArguments() != null) {
+            elementType = getArguments().getInt(ARG_ELEMENT_TYPE, ElementListFactory.ELEMENT_TYPE_INPUT);
         }
-        ElementSetAdapter adapter=new ElementSetAdapter(
-                getActivity().getApplicationContext(),
-                ElementListFactory.createElementList(elementType)
-        );
+
+        ElementSetAdapter adapter = new ElementSetAdapter(getActivity().getApplicationContext(),
+                ElementListFactory.createElementList(elementType));
 
         setListAdapter(adapter);
-
-
     }
-
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Object object=getListAdapter().getItem(position);
-
+        Object object = getListAdapter().getItem(position);
 
         if (object != null && object instanceof Element) {
-            Element element=(Element)object;
-            if(getActivity() instanceof ItemSelectionActivity){
-                ((ItemSelectionActivity)getActivity()).addLayoutId(element.layoutId);
+
+            Element element = (Element) object;
+
+            v.setSelected(!v.isSelected());
+
+            if (getActivity() instanceof ItemSelectionActivity) {
+                ((ItemSelectionActivity) getActivity()).addOrRemoveLayoutId(element.layoutId);
             }
 
         } else if (object != null && object instanceof Header) {
-
-            android.util.Log.v("FRAG","you clicked on a header");
+            android.util.Log.v("FRAG", "you clicked on a header");
         }
     }
-
 
 }

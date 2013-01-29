@@ -47,25 +47,26 @@ public class ElementListFactory {
         ArrayList<Object> list = new ArrayList<Object>();
 
         list.add(new Header(R.string.input_elements_header_patterns));
-        list.add(new Element(R.string.input_group_address, R.drawable.inputs_group_address,R.layout.group_address_field));
-        list.add(new Element(R.string.input_group_choice, R.drawable.inputs_group_choice));
-        list.add(new Element(R.string.input_group_message, R.drawable.inputs_group_message,R.layout.group_input_message));
+        list.add(new Element(R.string.input_group_address, R.drawable.inputs_group_address, R.layout.group_input_address));
+        list.add(new Element(R.string.input_group_choice, R.drawable.inputs_group_choice, R.layout.group_input_choice));
+        list.add(new Element(R.string.input_group_message, R.drawable.inputs_group_message, R.layout.group_input_message));
 
         list.add(new Header(R.string.input_elements_header_single_items));
-        list.add(new Element(R.string.inputs_single_checkbox, R.drawable.inputs_single_checkbox,R.layout.item_input_checkbox));
-        list.add(new Element(R.string.inputs_single_headline, R.drawable.inputs_single_headline));
-        list.add(new Element(R.string.inputs_single_input, R.drawable.inputs_single_input,R.layout.item_input_edittext));
-        list.add(new Element(R.string.inputs_single_spinner, R.drawable.inputs_single_spinner,R.layout.item_input_spinner));
-        list.add(new Element(R.string.inputs_single_text, R.drawable.inputs_single_text));
+        list.add(new Element(R.string.inputs_single_checkbox, R.drawable.inputs_single_checkbox, R.layout.item_input_checkbox));
+        list.add(new Element(R.string.inputs_single_headline, R.drawable.inputs_single_headline, R.layout.item_input_headline));
+        list.add(new Element(R.string.inputs_single_input, R.drawable.inputs_single_input, R.layout.item_input_edittext));
+        list.add(new Element(R.string.inputs_single_spinner, R.drawable.inputs_single_spinner, R.layout.item_input_spinner));
+//        list.add(new Element(R.string.inputs_single_text, R.drawable.inputs_single_text, R.layout.item_input_text));
 
-        return list;    }
+        return list;    
+    }
 
     private static List<Object> createListTypes() {
-        ArrayList<Object> list =new ArrayList<Object>();
+        ArrayList<Object> list = new ArrayList<Object>();
 
         list.add(new Header(R.string.input_elements_header_patterns));
-        list.add(new Element(R.string.input_element_textview,R.drawable.app_launcher));
-        list.add(new Element(R.string.input_element_textview,R.drawable.app_launcher));
+        list.add(new Element(R.string.input_element_textview, R.drawable.app_launcher));
+        list.add(new Element(R.string.input_element_textview, R.drawable.app_launcher));
 
         list.add(new Header(R.string.input_elements_header_single_items));
         list.add(new Element(R.string.input_element_textview, R.drawable.app_launcher));
