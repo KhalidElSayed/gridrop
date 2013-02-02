@@ -29,203 +29,228 @@ import com.novoda.gridrop.ui.fragments.ClearDialogFragment;
 
 public class MainActivity extends SherlockFragmentActivity {
 
-    private static final int REQUEST_CODE_ADD = 0;
-    public static final String EXTRA_LAYOUT_IDS = "layoutIds";
+	private static final int REQUEST_CODE_ADD = 0;
+	private static final String KEY_INFLATED_IDS = "inflatedIds";
 
-    private LinearLayout container;
-    private LinearLayout footerContainer;
-    private LayoutInflater inflater;
-    private Button addUiElementButton;
-    private ScrollView scrollView;
-    private View intro;
+	public static final String EXTRA_LAYOUT_IDS = "layoutIds";
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        container = (LinearLayout) findViewById(R.id.container);
-        footerContainer = (LinearLayout) findViewById(R.id.container_footer);
-        scrollView = (ScrollView) findViewById(R.id.scrollview);
-        intro = (View) findViewById(R.id.intro);
-        addUiElementButton = (Button) findViewById(R.id.btn_add);
-        inflater = LayoutInflater.from(this);
-    }
+	private LinearLayout container;
+	private LinearLayout footerContainer;
+	private LayoutInflater inflater;
+	private Button addUiElementButton;
+	private ScrollView scrollView;
+	private View intro;
+	private View arrow;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getSupportMenuInflater().inflate(R.menu.activity_main, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		container = (LinearLayout) findViewById(R.id.container);
+		footerContainer = (LinearLayout) findViewById(R.id.container_footer);
+		scrollView = (ScrollView) findViewById(R.id.scrollview);
+		intro = (View) findViewById(R.id.intro);
+		arrow = (View) findViewById(R.id.arrow);
+		addUiElementButton = (Button) findViewById(R.id.btn_add);
+		inflater = LayoutInflater.from(this);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.menu_clear) {
-            ClearDialogFragment.newInstance().show(getSupportFragmentManager(), null);
-            return true;
-        } else if (id == R.id.menu_share) {
-            share();
-            return true;
-        } else if (id == R.id.menu_about) {
-            Intent i = new Intent(MainActivity.this, AboutActivity.class);
-            startActivity(i);
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
+		if (savedInstanceState != null && savedInstanceState.containsKey(KEY_INFLATED_IDS)) {
+			ArrayList<Integer> inflatedIds = savedInstanceState.getIntegerArrayList(KEY_INFLATED_IDS);
+			inflate(inflatedIds);
+		}
+	}
 
-    public void inflate(View view) {
-        Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
-        startActivityForResult(i, REQUEST_CODE_ADD);
-    }
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getSupportMenuInflater().inflate(R.menu.activity_main, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
-    public void clear() {
-        Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
-        fadeOut.setAnimationListener(new AnimationListener() {
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+		if (id == R.id.menu_clear) {
+			ClearDialogFragment.newInstance().show(getSupportFragmentManager(), null);
+			return true;
+		} else if (id == R.id.menu_share) {
+			share();
+			return true;
+		} else if (id == R.id.menu_about) {
+			Intent i = new Intent(MainActivity.this, AboutActivity.class);
+			startActivity(i);
+			return true;
+		} else {
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
-            @Override
-            public void onAnimationStart(Animation animation) {
-            }
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
+		ArrayList<Integer> inflatedIds = new ArrayList<Integer>();
+		for (int i = 0; i < container.getChildCount(); i++) {
+			View item = container.getChildAt(i);
+			if (item != null && item.getTag() != null) {
+				inflatedIds.add((Integer) item.getTag());
+			}
+		}
+		outState.putIntegerArrayList(KEY_INFLATED_IDS, inflatedIds);
+	}
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+	public void inflate(View view) {
+		Intent i = new Intent(MainActivity.this, ItemSelectionActivity.class);
+		startActivityForResult(i, REQUEST_CODE_ADD);
+	}
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                container.removeAllViews();
-                if (intro.getVisibility() == View.GONE) {
-                    intro.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        container.startAnimation(fadeOut);
+	public void clear() {
+		Animation fadeOut = AnimationUtils.loadAnimation(this, android.R.anim.fade_out);
+		fadeOut.setAnimationListener(new AnimationListener() {
 
-    }
+			@Override
+			public void onAnimationStart(Animation animation) {
+			}
 
-    public void removeItem(View view) {
-        container.removeView(view);
-        if (container.getChildCount() == 0) {
-            intro.setVisibility(View.VISIBLE);
-        }
-    }
+			@Override
+			public void onAnimationRepeat(Animation animation) {
+			}
 
-    public void share() {
-        new ScreenshotTask() {
-            protected void onPreExecute() {
-                addUiElementButton.setVisibility(View.GONE);
-            };
+			@Override
+			public void onAnimationEnd(Animation animation) {
+				container.removeAllViews();
+				if (intro.getVisibility() == View.GONE) {
+					intro.setVisibility(View.VISIBLE);
+					arrow.setVisibility(View.VISIBLE);
+					scrollView.setVisibility(View.GONE);
+				}
+			}
+		});
+		container.startAnimation(fadeOut);
+	}
 
-            protected void onPostExecute(File result) {
-                addUiElementButton.setVisibility(View.VISIBLE);
-                try {
-                    if (result != null) {
-                        launchGallery(Uri.fromFile(result));
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            };
-        }.execute(this);
-    }
+	public void removeItem(View view) {
+		container.removeView(view);
+		if (container.getChildCount() == 0) {
+			intro.setVisibility(View.VISIBLE);
+			arrow.setVisibility(View.VISIBLE);
+			scrollView.setVisibility(View.GONE);
+		}
+	}
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+	public void share() {
+		new ScreenshotTask() {
+			protected void onPreExecute() {
+				addUiElementButton.setVisibility(View.GONE);
+			};
 
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
-            if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
-                ArrayList<Integer> selectedIds = data.getIntegerArrayListExtra(EXTRA_LAYOUT_IDS);
-                inflate(selectedIds);
-            }
-        }
-    }
+			protected void onPostExecute(File result) {
+				addUiElementButton.setVisibility(View.VISIBLE);
+				try {
+					if (result != null) {
+						launchGallery(Uri.fromFile(result));
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			};
+		}.execute(this);
+	}
 
-    private void launchGallery(Uri uri) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setDataAndType(uri, "image/png");
-        startActivity(intent);
-    }
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 
-    public void inflate(ArrayList<Integer> ids) {
-        inflate(ids.toArray(new Integer[ids.size()]));
-    }
+		if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_ADD) {
+			if (data != null && data.hasExtra(EXTRA_LAYOUT_IDS)) {
+				ArrayList<Integer> selectedIds = data.getIntegerArrayListExtra(EXTRA_LAYOUT_IDS);
+				inflate(selectedIds);
+			}
+		}
+	}
 
-    public void inflate(Integer[] ids) {
-        if (ids.length > 0 && intro.getVisibility() == View.VISIBLE) {
-            intro.setVisibility(View.GONE);
-        }
-        if (ids != null) {
-            for (int id : ids) {
-                if (id > 0) {
-                    View item = inflater.inflate(id, null);
+	private void launchGallery(Uri uri) {
+		Intent intent = new Intent();
+		intent.setAction(Intent.ACTION_VIEW);
+		intent.setDataAndType(uri, "image/png");
+		startActivity(intent);
+	}
 
-                    item.setFocusable(false);
+	public void inflate(ArrayList<Integer> ids) {
+		if (ids.size() > 0 && intro.getVisibility() == View.VISIBLE) {
+			intro.setVisibility(View.GONE);
+			arrow.setVisibility(View.GONE);
+			scrollView.setVisibility(View.VISIBLE);
+		}
+		if (ids != null) {
+			for (int id : ids) {
+				if (id > 0) {
+					View item = inflater.inflate(id, null);
+					item.setTag(Integer.valueOf(id));
 
-                    item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                            LinearLayout.LayoutParams.WRAP_CONTENT));
+					item.setFocusable(false);
 
-                    // TODO determine which ids to add at the bottom (for split ActionBar)
-                    if (id == 0) {
-                        footerContainer.addView(item);
-                    } else {
-                        container.addView(item);
-                    }
-                    
-                    item.startAnimation(getViewAddedAnimation());
+					item.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+							LinearLayout.LayoutParams.WRAP_CONTENT));
 
-                    // Create a generic swipe-to-dismiss touch listener.
-                    item.setOnTouchListener(new SwipeDismissTouchListener(item, null,
-                            new SwipeDismissTouchListener.OnDismissCallback() {
-                                @Override
-                                public void onDismiss(View view, Object token) {
-                                    removeItem(view);
-                                }
-                            }));
-                }
+					// TODO determine which ids to add at the bottom (for split
+					// ActionBar)
+					if (id == 0) {
+						footerContainer.addView(item);
+					} else {
+						container.addView(item);
+					}
 
-            }
-            scrollView.post(new Runnable() {
+					item.startAnimation(getViewAddedAnimation());
 
-                @Override
-                public void run() {
-                    scrollView.fullScroll(ScrollView.FOCUS_DOWN);
-                }
-            });
-        }
-    }
+					// Create a generic swipe-to-dismiss touch listener.
+					item.setOnTouchListener(new SwipeDismissTouchListener(item, null,
+							new SwipeDismissTouchListener.OnDismissCallback() {
+								@Override
+								public void onDismiss(View view, Object token) {
+									removeItem(view);
+								}
+							}));
+				}
 
-    private Animation getViewAddedAnimation() {
-        return AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
-    }
+			}
+			scrollView.post(new Runnable() {
 
-    class ScreenshotTask extends AsyncTask<Activity, Void, File> {
-        private static final String SAVE_FOLDER = "/DCIM/gridrop";
-        private static final String PNG_SUFFIX = ".png";
+				@Override
+				public void run() {
+					scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+				}
+			});
+		}
+	}
 
-        @Override
-        protected File doInBackground(Activity... params) {
-            try {
-                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + SAVE_FOLDER);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
+	private Animation getViewAddedAnimation() {
+		return AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+	}
 
-                File file = new File(dir.getAbsolutePath(), System.currentTimeMillis() + PNG_SUFFIX);
-                FileOutputStream out = new FileOutputStream(file);
+	class ScreenshotTask extends AsyncTask<Activity, Void, File> {
+		private static final String SAVE_FOLDER = "/DCIM/gridrop";
+		private static final String PNG_SUFFIX = ".png";
 
-                Screenshot s = new Screenshot(params[0]);
-                Bitmap b = s.snap();
-                b.compress(CompressFormat.PNG, 100, out);
+		@Override
+		protected File doInBackground(Activity... params) {
+			try {
+				File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + SAVE_FOLDER);
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
 
-                return file;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
+				File file = new File(dir.getAbsolutePath(), System.currentTimeMillis() + PNG_SUFFIX);
+				FileOutputStream out = new FileOutputStream(file);
+
+				Screenshot s = new Screenshot(params[0]);
+				Bitmap b = s.snap();
+				b.compress(CompressFormat.PNG, 100, out);
+
+				return file;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+	}
 
 }

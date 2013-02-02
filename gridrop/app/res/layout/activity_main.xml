@@ -36,12 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dip"
             android:text="@string/how_it_works_sub" />
-        
-        <ImageView android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/arrow"
-            android:layout_gravity="right"
-            android:scaleType="centerInside"/>
     </LinearLayout>
 
     <ScrollView
@@ -49,7 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:fillViewport="true" >
+        android:fillViewport="true"
+        android:visibility="gone" >
 
         <LinearLayout
             android:id="@+id/container"
@@ -60,6 +55,16 @@
             android:paddingRight="16dip" >
         </LinearLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="0dip"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:paddingLeft="40dip"
+        android:scaleType="centerInside"
+        android:src="@drawable/arrow" />
 
     <Button
         android:id="@+id/btn_add"
